@@ -1,0 +1,10 @@
+{
+    "job": {
+        "total_account": 10,
+        "tasks": {
+            "a任务0": 1
+        }
+    },
+    "task_list": {
+    }
+}
