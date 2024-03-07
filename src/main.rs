@@ -1,12 +1,10 @@
 use serde::{Deserialize, Serialize};
-use std::{collections::BTreeMap, path::Path};
-use std::fs;
+use std::{collections::BTreeMap, path::Path, path::PathBuf, fs, fs::OpenOptions};
 use rand::Rng;
 use chrono::{Local, Duration};
 use dialoguer::{theme::ColorfulTheme, Select, console::Term};
-use std::fs::OpenOptions;
 use directories::UserDirs;
-use std::path::PathBuf;
+use clap::Command;
 
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 struct Task {
@@ -26,6 +24,10 @@ struct Config {
 }
 
 fn main() {
+    let _version = Command::new("version")
+            .version(env!("CARGO_PKG_VERSION"))
+            .get_matches();
+
     let config_path = get_config_path();
     let mut config: Config = get_config(&config_path);
 
@@ -68,7 +70,6 @@ fn draw_gui(config_path: &Path, config: &mut Config) {
         let accounts = get_accounts(&config);
         if accounts.is_empty() {
             println!("当前无任务，按CTRL+C退出程序");
-            // 暂停程序，直到用户按下CTRL+C
             std::thread::sleep(std::time::Duration::from_secs(60 * 60));
         }
 
@@ -166,7 +167,6 @@ fn check_task(config_path: &Path, config: &mut Config) {
         for i in 0..config.job.total_account {
             let account = format!("{:03}", i + 1);
     
-            // 在 if 和 else 分支之外定义 `days` 变量
             let days = rng.gen_range(0..*count);
             
             if *count != 1 {
