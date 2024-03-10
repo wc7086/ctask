@@ -1,6 +1,6 @@
 [package]
 name = "ctask"
-version = "0.1.3"
+version = "0.1.5"
 edition = "2021"
 description = "A simple task list"
 authors = ["wc7086 <190022474@qq.com>"]
