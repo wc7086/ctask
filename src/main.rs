@@ -169,38 +169,20 @@ fn check_task(config_path: &Path, config: &mut Config) {
     
             let days = rng.gen_range(0..*count);
             
-            if *count != 1 {
-                let now = Local::now();
-                let duration = Duration::try_days(days as i64).expect("Invalid number of days");
-                let set_day = (now + duration).format("%Y-%m-%d").to_string();
+            let now = Local::now();
+            let duration = Duration::try_days(days as i64).expect("Invalid number of days");
+            let set_day = (now + duration).format("%Y-%m-%d").to_string();
                 
-                let task_entry = Task {
-                    start_time: set_day,
-                };
+            let task_entry = Task {
+                start_time: set_day,
+            };
                 
-                if !config.task_list.get(&account).map_or(false, |tasks| tasks.contains_key(task)) {
-                    config
-                        .task_list
-                        .entry(account.clone())
-                        .or_insert_with(BTreeMap::new)
-                        .insert(task.to_string(), task_entry);
-                }
-            } else {
-                let now = Local::now();
-                let duration = Duration::try_days(days as i64).expect("Invalid number of days");
-                let set_day = (now + duration).format("%Y-%m-%d").to_string();
-                
-                let task_entry = Task {
-                    start_time: set_day,
-                };
-                
-                if !config.task_list.get(&account).map_or(false, |tasks| tasks.contains_key(task)) {
-                    config
-                        .task_list
-                        .entry(account.clone())
-                        .or_insert_with(BTreeMap::new)
-                        .insert(task.to_string(), task_entry);
-                }
+            if !config.task_list.get(&account).map_or(false, |tasks| tasks.contains_key(task)) {
+                config
+                    .task_list
+                    .entry(account.clone())
+                    .or_insert_with(BTreeMap::new)
+                    .insert(task.to_string(), task_entry);
             }
     
             if *count == 0 {
