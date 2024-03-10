@@ -3,7 +3,7 @@ name = "ctask"
 version = "0.1.1"
 edition = "2021"
 description = "A simple task list"
-author = "wc7086 <190022474@qq.com>"
+authors = ["wc7086 <190022474@qq.com>"]
 license = "GPL-3.0"
 repository = "https://github.com/wc7086/ctask"
 
