@@ -4,7 +4,7 @@ version = "0.1.2"
 edition = "2021"
 description = "A simple task list"
 authors = ["wc7086 <190022474@qq.com>"]
-license = "GPL-3.0"
+license = "GPL-3.0-only"
 repository = "https://github.com/wc7086/ctask"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
